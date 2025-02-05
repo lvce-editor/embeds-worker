@@ -11,6 +11,7 @@ const options = {
   treeshake: {
     propertyReadSideEffects: false,
   },
+  external: ['ws', 'electron'],
   output: {
     file: 'dist/dist/embedsWorkerMain.js',
     format: 'es',
@@ -19,6 +20,7 @@ const options = {
       constBindings: true,
       objectShorthand: true,
     },
+    sourcemap: false,
   },
   plugins: [
     babel({
