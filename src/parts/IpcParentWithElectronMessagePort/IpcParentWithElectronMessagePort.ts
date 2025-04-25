@@ -5,7 +5,7 @@ import * as Rpc from '../Rpc/Rpc.ts'
 export const create = async ({ initialCommand }) => {
   const { port1, port2 } = GetPortTuple.getPortTuple()
   // TODO call sendMessagePortToSharedProcess function instead
-  await Rpc.invokeAndTransfer('IpcParent.create', [port1], {
+  await Rpc.invokeAndTransfer('IpcParent.create', {
     method: 8,
     type: 1,
     initialCommand,
