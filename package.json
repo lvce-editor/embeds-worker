@@ -43,6 +43,7 @@
     "@lvce-editor/ipc": "^13.8.0",
     "@lvce-editor/json-rpc": "^5.4.0",
     "@lvce-editor/rpc": "^1.27.0",
+    "@lvce-editor/verror": "^1.6.0",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@types/eslint__js": "^9.14.0",
