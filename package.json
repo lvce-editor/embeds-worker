@@ -39,7 +39,7 @@
     "@babel/preset-typescript": "^7.27.1",
     "@eslint/js": "9.26.0",
     "@lvce-editor/assert": "^1.3.0",
-    "@lvce-editor/eslint-config": "^1.41.0",
+    "@lvce-editor/eslint-config": "^1.42.0",
     "@lvce-editor/ipc": "^14.1.0",
     "@lvce-editor/json-rpc": "^5.4.0",
     "@lvce-editor/rpc": "^3.4.0",
