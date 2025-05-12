@@ -82,6 +82,10 @@ export const insertCss = (id, css) => {
   return EmbedsProcess.invoke('ElectronWebContentsView.insertCss', id, css)
 }
 
+export const insertJavaScript = (id, code) => {
+  return EmbedsProcess.invoke('ElectronWebContentsView.insertJavaScript', id, code)
+}
+
 export const cancelNavigation = (id) => {
   return EmbedsProcess.invoke('ElectronWebContentsView.cancelNavigation', id)
 }
