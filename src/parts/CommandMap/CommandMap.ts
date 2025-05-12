@@ -14,6 +14,7 @@ export const commandMap = {
   'ElectronWebContentsView.handleDidNavigate': ElectronWebContentsView.handleDidNavigate,
   'ElectronWebContentsView.handleTitleUpdated': ElectronWebContentsView.handleTitleUpdated,
   'ElectronWebContentsView.getDomTree': ElectronWebContentsView.getDomTree,
+  'ElectronWebContentsView.insertCss': ElectronWebContentsView.insertCss,
   'ElectronWebContentsView.handleWillNavigate': ElectronWebContentsView.handleWillNavigate,
   'ElectronWebContentsView.hide': ElectronWebContentsView.hide,
   'ElectronWebContentsView.inspectElement': ElectronWebContentsView.inspectElement,
