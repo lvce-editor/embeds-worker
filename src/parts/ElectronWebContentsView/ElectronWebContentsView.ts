@@ -78,6 +78,10 @@ export const getDomTree = (id) => {
   return EmbedsProcess.invoke('ElectronWebContentsView.getDomTree', id)
 }
 
+export const insertCss = (id, css) => {
+  return EmbedsProcess.invoke('ElectronWebContentsView.insertCss', id, css)
+}
+
 export const cancelNavigation = (id) => {
   return EmbedsProcess.invoke('ElectronWebContentsView.cancelNavigation', id)
 }
