@@ -1,5 +1,6 @@
 import * as JsonRpc from '../JsonRpc/JsonRpc.ts'
 import * as LaunchEmbedsProcessIpc from '../LaunchEmbedsProcessIpc/LaunchEmbedsProcessIpc.ts'
+import { EmbedsProcess } from '@lvce-editor/rpc-registry'
 
 interface State {
   workerPromise?: Promise<any>
@@ -23,3 +24,5 @@ export const invoke = async (method, ...params) => {
   const ipc = await getOrCreate()
   return JsonRpc.invoke(ipc, method, ...params)
 }
+
+export const { set } = EmbedsProcess
