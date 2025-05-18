@@ -110,7 +110,7 @@ export const getStats = (id, fallthroughKeybindings) => {
 const forwardEvent =
   (key) =>
   (id, ...args) => {
-    Rpc.send(key, ...args)
+    return Rpc.invoke(key, ...args)
   }
 
 export const handleDidNavigate = forwardEvent('ElectronBrowserView.handleDidNavigate')

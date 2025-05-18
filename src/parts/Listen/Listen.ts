@@ -6,5 +6,5 @@ export const listen = async (): Promise<void> => {
   const rpc = await WebWorkerRpcClient.create({
     commandMap: CommandMap.commandMap,
   })
-  ParentRpc.setRpc(rpc)
+  ParentRpc.set(rpc)
 }
