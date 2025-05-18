@@ -11,7 +11,7 @@ export const createEmbedsProcessRpc = async (): Promise<Rpc> => {
     const rpc = await MessagePortRpcParent.create({
       commandMap: {},
       messagePort: port1,
-      isMessagePortOpen: false,
+      isMessagePortOpen: true,
     })
     // TODO createMessageportRpcParent should call port start
     return rpc
