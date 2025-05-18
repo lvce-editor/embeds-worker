@@ -2,7 +2,8 @@ import * as ParentRpc from '../ParentRpc/ParentRpc.ts'
 import * as RpcId from '../RpcId/RpcId.ts'
 
 export const sendMessagePortToEmbedsProcess = async (port: MessagePort): Promise<void> => {
-  const command = 'HandleMessagePort.handleMessagePort'
+  const outerCommand = 'HandleMessagePortForEmbedsProcess.handleMessagePortForEmbedsProcess'
+  // TODO
   // @ts-ignore
-  await ParentRpc.invokeAndTransfer('SendMessagePortToEmbedsProcess.sendMessagePortToEmbedsProcess', port, command, RpcId.EmbedsWorker)
+  await ParentRpc.invokeAndTransfer('SendMessagePortToExtensionHostWorker.sendMessagePortToSharedProcess', port, outerCommand, RpcId.EmbedsWorker)
 }
