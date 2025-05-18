@@ -1,7 +1,7 @@
 import { type Rpc, MessagePortRpcParent } from '@lvce-editor/rpc'
 import { VError } from '@lvce-editor/verror'
 import * as GetPortTuple from '../GetPortTuple/GetPortTuple.ts'
-import { sendMessagePortToEmbedsProcess } from '../SendMessagePortToExtensionHostWorker/SendMessagePortToExtensionHostWorker.ts'
+import { sendMessagePortToEmbedsProcess } from '../SendMessagePortToEmbedsProcess/SendMessagePortToEmbedsProcess.ts'
 
 export const createEmbedsProcessRpc = async (): Promise<Rpc> => {
   try {
