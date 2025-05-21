@@ -126,7 +126,7 @@ export const getStats = (id: string, fallthroughKeybindings: any): Promise<any> 
 }
 
 const forwardEvent =
-  (key: any) =>
+  (key: any): any =>
   (id: string, ...args: readonly any[]) => {
     return Rpc.invoke(key, ...args)
   }

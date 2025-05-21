@@ -1,3 +1,3 @@
-export const exit = () => {
+export const exit = (): void => {
   globalThis.close()
 }
