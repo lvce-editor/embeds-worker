@@ -1,0 +1,57 @@
+{
+  "name": "@lvce-editor/embeds-worker",
+  "version": "0.0.0-dev",
+  "description": "Web Worker to manage electron webcontent views in Lvce Editor",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:lvce-editor/embeds-worker.git"
+  },
+  "license": "MIT",
+  "author": "Lvce Editor",
+  "type": "module",
+  "main": "src/embedsWorkerMain.ts",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node --unhandled-rejections=warn --experimental-vm-modules ./node_modules/jest/bin/jest.js --detectOpenHandles --forceExit",
+    "test:watch": "node --unhandled-rejections=warn --experimental-vm-modules ./node_modules/jest/bin/jest.js --watch"
+  },
+  "jest": {
+    "injectGlobals": false,
+    "extensionsToTreatAsEsm": [
+      ".ts"
+    ],
+    "moduleNameMapper": {
+      "^(\\.{1,2}/.*)\\.js$": "$1"
+    },
+    "transform": {
+      "^.+\\.tsx?$": [
+        "ts-jest",
+        {
+          "useESM": true
+        }
+      ]
+    },
+    "collectCoverage": true,
+    "coverageThreshold": {
+      "global": {
+        "branches": 74,
+        "functions": 70,
+        "lines": 70
+      }
+    }
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@lvce-editor/assert": "^1.3.0",
+    "@lvce-editor/eslint-config": "^1.46.0",
+    "@lvce-editor/ipc": "^14.1.0",
+    "@lvce-editor/json-rpc": "^5.4.0",
+    "@lvce-editor/rpc": "^3.4.0",
+    "@lvce-editor/rpc-registry": "^2.14.0",
+    "@lvce-editor/verror": "^1.6.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.3.4"
+  }
+}
