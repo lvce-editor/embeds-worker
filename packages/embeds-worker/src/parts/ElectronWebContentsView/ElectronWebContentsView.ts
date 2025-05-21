@@ -1,6 +1,6 @@
 import * as EmbedsProcess from '../EmbedsProcess/EmbedsProcess.ts'
-import * as Rpc from '../ParentRpc/ParentRpc.ts'
 import * as LoadErrorCode from '../LoadErrorCode/LoadErrorCode.ts'
+import * as Rpc from '../ParentRpc/ParentRpc.ts'
 
 export const createWebContentsView = async (restoreId, fallThroughKeyBindings) => {
   // @ts-ignore
