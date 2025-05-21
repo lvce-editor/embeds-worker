@@ -26,7 +26,12 @@ function updateDependencies {
   fi
 }
 
-updateDependencies &&
+                                                       updateDependencies             &&
+cd packages/build                                   && updateDependencies && cd ../.. &&
+cd packages/embeds-worker                           && updateDependencies && cd ../.. &&
+cd packages/memory                                  && updateDependencies && cd ../.. &&
+cd packages/e2e                                     && updateDependencies && cd ../.. &&
+
 
 echo "Great Success!"
 
