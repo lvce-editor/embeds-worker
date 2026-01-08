@@ -6,6 +6,23 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     assetDir,
     platform,
     uid,
+    id: uid,
+    uri,
+    x,
+    y,
+    width,
+    height,
+    headerHeight: 30,
+    iframeSrc: '',
+    inputValue: '',
+    title: '',
+    browserViewId: 0,
+    canGoForward: true,
+    canGoBack: true,
+    isLoading: false,
+    hasSuggestionsOverlay: false,
+    suggestionsEnabled: false,
+    shortcuts: [],
   }
   set(uid, state, state)
 }
