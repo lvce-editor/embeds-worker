@@ -1,8 +1,8 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
-import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.js'
-import * as HtmlInputType from '../HtmlInputType/HtmlInputType.js'
+import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
+import * as HtmlInputType from '../HtmlInputType/HtmlInputType.ts'
 
 export const getSimpleBrowserVirtualDom = (
   canGoBack: boolean,
