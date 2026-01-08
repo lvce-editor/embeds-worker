@@ -1,13 +1,13 @@
 import type { SimpleBrowserState } from '../StatusBarState/StatusBarState.ts'
-import * as ElectronWebContentsViewFunctions from '../../ElectronWebContentsViewFunctions/ElectronWebContentsViewFunctions.js'
-import * as GetFallThroughKeyBindings from '../../GetFallThroughKeyBindings/GetFallThroughKeyBindings.js'
-import * as KeyBindingsInitial from '../../KeyBindingsInitial/KeyBindingsInitial.js'
-import * as Preferences from '../../Preferences/Preferences.js'
-import * as SimpleBrowserPreferences from '../../SimpleBrowserPreferences/SimpleBrowserPreferences.js'
 import * as Assert from '../Assert/Assert.ts'
 import * as ElectronWebContentsView from '../ElectronWebContentsView/ElectronWebContentsView.ts'
+import * as ElectronWebContentsViewFunctions from '../ElectronWebContentsViewFunctions/ElectronWebContentsViewFunctions.js'
+import * as GetFallThroughKeyBindings from '../GetFallThroughKeyBindings/GetFallThroughKeyBindings.js'
 import * as GetLoadContentId from '../GetLoadContentId/GetLoadContentId.ts'
 import * as GetUrlFromSavedState from '../GetUrlFromSavedState/GetUrlFromSavedState.ts'
+import * as KeyBindingsInitial from '../KeyBindingsInitial/KeyBindingsInitial.js'
+import * as Preferences from '../Preferences/Preferences.js'
+import * as SimpleBrowserPreferences from '../SimpleBrowserPreferences/SimpleBrowserPreferences.js'
 
 export const loadContent = async (state: SimpleBrowserState, savedState: any): Promise<any> => {
   const { x, y, width, height, headerHeight, uri, uid } = state
