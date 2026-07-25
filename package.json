@@ -4,16 +4,18 @@
   "license": "MIT",
   "author": "Lvce Editor",
   "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "build": "node packages/build/src/build.js",
     "build:static": "node packages/build/src/build-static.js",
-    "build:watch": "./packages/build/node_modules/.bin/esbuild --format=esm --bundle --external:node:buffer --external:electron --external:ws --external:node:worker_threads --watch packages/embeds-worker/src/embedsWorkerMain.ts --outfile=.tmp/dist/dist/embedsWorkerMain.js",
+    "build:watch": "./node_modules/.bin/esbuild --format=esm --bundle --external:node:buffer --external:electron --external:ws --external:node:worker_threads --watch packages/embeds-worker/src/embedsWorkerMain.ts --outfile=.tmp/dist/dist/embedsWorkerMain.js",
     "dev": "node packages/build/src/dev.js",
     "format": "prettier --write .",
-    "postinstall": "lerna bootstrap --ci",
     "lint": "eslint .",
-    "measure": "cd packages/memory && npm run measure",
-    "test": "lerna run test",
+    "measure": "npm run measure --workspace=@lvce-editor/embeds-worker-memory",
+    "test": "npm test --workspaces --if-present",
     "type-check": "tsc -b"
   },
   "prettier": {
@@ -22,10 +24,8 @@
     "printWidth": 150
   },
   "devDependencies": {
-    "@lerna/legacy-package-management": "^8.2.4",
     "@lvce-editor/eslint-config": "^17.0.3",
     "eslint": "^10.7.0",
-    "lerna": "^8.2.3",
     "prettier": "^3.7.4",
     "typescript": "^6.0.0"
   }
