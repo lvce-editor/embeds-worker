@@ -1,9 +1,14 @@
+import * as AcceptLogin from '../AcceptLogin/AcceptLogin.ts'
+import * as CancelLogin from '../CancelLogin/CancelLogin.ts'
 import * as ElectronWebContentsView from '../ElectronWebContentsView/ElectronWebContentsView.ts'
 import * as Exit from '../Exit/Exit.ts'
+import * as HandleLogin from '../HandleLogin/HandleLogin.ts'
 import * as Initialize from '../Initialize/Initialize.ts'
 
 export const commandMap = {
+  'ElectronWebContentsView.acceptLogin': AcceptLogin.acceptLogin,
   'ElectronWebContentsView.backward': ElectronWebContentsView.backward,
+  'ElectronWebContentsView.cancelLogin': CancelLogin.cancelLogin,
   'ElectronWebContentsView.cancelNavigation': ElectronWebContentsView.cancelNavigation,
   'ElectronWebContentsView.copyImageAt': ElectronWebContentsView.copyImageAt,
   'ElectronWebContentsView.createWebContentsView': ElectronWebContentsView.createWebContentsView,
@@ -14,6 +19,7 @@ export const commandMap = {
   'ElectronWebContentsView.getStats': ElectronWebContentsView.getStats,
   'ElectronWebContentsView.handleContextMenu': ElectronWebContentsView.handleContextMenu,
   'ElectronWebContentsView.handleDidNavigate': ElectronWebContentsView.handleDidNavigate,
+  'ElectronWebContentsView.handleLogin': HandleLogin.handleLogin,
   'ElectronWebContentsView.handleTitleUpdated': ElectronWebContentsView.handleTitleUpdated,
   'ElectronWebContentsView.handleWillNavigate': ElectronWebContentsView.handleWillNavigate,
   'ElectronWebContentsView.hide': ElectronWebContentsView.hide,
