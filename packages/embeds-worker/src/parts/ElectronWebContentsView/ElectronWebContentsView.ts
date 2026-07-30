@@ -16,7 +16,7 @@ export const resizeWebContentsView = (id: string, x: number, y: number, width: n
   return EmbedsProcess.invoke('ElectronWebContentsView.resizeBrowserView', id, x, y, width, height)
 }
 
-export const setIframeSrcFallback = async (id: string, error: any): Promise<void> => {
+const setIframeSrcFallback = async (id: string, error: any): Promise<void> => {
   const { code, message } = error
 
   await EmbedsProcess.invoke('ElectronWebContentsView.setIframeSrcFallback', id, code, message)
