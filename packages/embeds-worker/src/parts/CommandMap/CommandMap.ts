@@ -1,5 +1,6 @@
 import * as AcceptLogin from '../AcceptLogin/AcceptLogin.ts'
 import * as CancelLogin from '../CancelLogin/CancelLogin.ts'
+import * as CapturePage from '../CapturePage/CapturePage.ts'
 import * as ElectronWebContentsView from '../ElectronWebContentsView/ElectronWebContentsView.ts'
 import * as Exit from '../Exit/Exit.ts'
 import * as HandleLogin from '../HandleLogin/HandleLogin.ts'
@@ -10,6 +11,7 @@ export const commandMap = {
   'ElectronWebContentsView.backward': ElectronWebContentsView.backward,
   'ElectronWebContentsView.cancelLogin': CancelLogin.cancelLogin,
   'ElectronWebContentsView.cancelNavigation': ElectronWebContentsView.cancelNavigation,
+  'ElectronWebContentsView.capturePage': CapturePage.capturePage,
   'ElectronWebContentsView.copyImageAt': ElectronWebContentsView.copyImageAt,
   'ElectronWebContentsView.createWebContentsView': ElectronWebContentsView.createWebContentsView,
   'ElectronWebContentsView.disposeWebContentsView': ElectronWebContentsView.disposeWebContentsView,
