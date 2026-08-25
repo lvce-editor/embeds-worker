@@ -2,6 +2,7 @@ import { beforeEach, expect, test } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
 import * as AcceptLogin from '../src/parts/AcceptLogin/AcceptLogin.ts'
 import * as CancelLogin from '../src/parts/CancelLogin/CancelLogin.ts'
+import * as CapturePage from '../src/parts/CapturePage/CapturePage.ts'
 import * as EmbedsProcess from '../src/parts/EmbedsProcess/EmbedsProcess.ts'
 import * as HandleLogin from '../src/parts/HandleLogin/HandleLogin.ts'
 import * as ParentRpc from '../src/parts/ParentRpc/ParentRpc.ts'
@@ -44,6 +45,12 @@ test('cancelLogin forwards the challenge to the embeds process', async () => {
   await CancelLogin.cancelLogin('12:1')
 
   expect(state.embedsProcessInvocations).toEqual([['ElectronWebContentsView.cancelLogin', '12:1']])
+})
+
+test('capturePage forwards the web contents id to the embeds process', async () => {
+  await CapturePage.capturePage('12')
+
+  expect(state.embedsProcessInvocations).toEqual([['ElectronWebContentsView.capturePage', '12']])
 })
 
 test('handleLogin forwards the web contents id and challenge to the renderer worker', async () => {
