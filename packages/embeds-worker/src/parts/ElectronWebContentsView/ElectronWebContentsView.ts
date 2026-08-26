@@ -1,6 +1,6 @@
 import * as EmbedsProcess from '../EmbedsProcess/EmbedsProcess.ts'
+import * as ForwardWebContentsViewEvent from '../ForwardWebContentsViewEvent/ForwardWebContentsViewEvent.ts'
 import * as LoadErrorCode from '../LoadErrorCode/LoadErrorCode.ts'
-import * as Rpc from '../ParentRpc/ParentRpc.ts'
 
 export const createWebContentsView = async (restoreId: string, fallThroughKeyBindings: any): Promise<any> => {
   // @ts-ignore
@@ -111,16 +111,12 @@ export const getStats = (id: string, fallthroughKeybindings: any): Promise<any> 
   return EmbedsProcess.invoke('ElectronWebContentsView.getStats', id, fallthroughKeybindings)
 }
 
-const forwardEvent =
-  (key: any): any =>
-  (id: string, ...args: readonly any[]) => {
-    return Rpc.invoke(key, ...args)
-  }
+export const handleDidNavigate = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handleDidNavigate')
 
-export const handleDidNavigate = forwardEvent('ElectronBrowserView.handleDidNavigate')
+export const handlePageFaviconUpdated = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handlePageFaviconUpdated')
 
-export const handleTitleUpdated = forwardEvent('ElectronBrowserView.handleTitleUpdated')
+export const handleTitleUpdated = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handleTitleUpdated')
 
-export const handleWillNavigate = forwardEvent('ElectronBrowserView.handleWillNavigate')
+export const handleWillNavigate = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handleWillNavigate')
 
-export const handleContextMenu = forwardEvent('ElectronBrowserView.handleContextMenu')
+export const handleContextMenu = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handleContextMenu', false)
