@@ -3,6 +3,7 @@ import { MockRpc } from '@lvce-editor/rpc'
 import * as AcceptLogin from '../src/parts/AcceptLogin/AcceptLogin.ts'
 import * as CancelLogin from '../src/parts/CancelLogin/CancelLogin.ts'
 import * as CapturePage from '../src/parts/CapturePage/CapturePage.ts'
+import * as ElectronWebContentsView from '../src/parts/ElectronWebContentsView/ElectronWebContentsView.ts'
 import * as EmbedsProcess from '../src/parts/EmbedsProcess/EmbedsProcess.ts'
 import * as HandleLogin from '../src/parts/HandleLogin/HandleLogin.ts'
 import * as ParentRpc from '../src/parts/ParentRpc/ParentRpc.ts'
@@ -62,4 +63,24 @@ test('handleLogin forwards the web contents id and challenge to the renderer wor
   await HandleLogin.handleLogin('12', challenge)
 
   expect(state.parentInvocations).toEqual([['ElectronBrowserView.handleLogin', '12', challenge]])
+})
+
+test('navigation events preserve the web contents id', async () => {
+  await ElectronWebContentsView.handleDidNavigate('12', 'https://example.com')
+
+  expect(state.parentInvocations).toEqual([['ElectronBrowserView.handleDidNavigate', '12', 'https://example.com']])
+})
+
+test('favicon events preserve the web contents id', async () => {
+  await ElectronWebContentsView.handlePageFaviconUpdated('12', ['https://example.com/favicon.png'])
+
+  expect(state.parentInvocations).toEqual([['ElectronBrowserView.handlePageFaviconUpdated', '12', ['https://example.com/favicon.png']]])
+})
+
+test('context menu events retain the existing renderer signature', async () => {
+  const event = { x: 1, y: 2 }
+
+  await ElectronWebContentsView.handleContextMenu('12', event)
+
+  expect(state.parentInvocations).toEqual([['ElectronBrowserView.handleContextMenu', event]])
 })

@@ -112,15 +112,17 @@ export const getStats = (id: string, fallthroughKeybindings: any): Promise<any> 
 }
 
 const forwardEvent =
-  (key: any): any =>
+  (key: any, includeId = true): any =>
   (id: string, ...args: readonly any[]) => {
-    return Rpc.invoke(key, ...args)
+    return Rpc.invoke(key, ...(includeId ? [id, ...args] : args))
   }
 
 export const handleDidNavigate = forwardEvent('ElectronBrowserView.handleDidNavigate')
+
+export const handlePageFaviconUpdated = forwardEvent('ElectronBrowserView.handlePageFaviconUpdated')
 
 export const handleTitleUpdated = forwardEvent('ElectronBrowserView.handleTitleUpdated')
 
 export const handleWillNavigate = forwardEvent('ElectronBrowserView.handleWillNavigate')
 
-export const handleContextMenu = forwardEvent('ElectronBrowserView.handleContextMenu')
+export const handleContextMenu = forwardEvent('ElectronBrowserView.handleContextMenu', false)
