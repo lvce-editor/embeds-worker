@@ -119,4 +119,6 @@ export const handleTitleUpdated = ForwardWebContentsViewEvent.forwardWebContents
 
 export const handleWillNavigate = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handleWillNavigate')
 
+export const handleWindowOpen = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handleWindowOpen')
+
 export const handleContextMenu = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handleContextMenu', false)

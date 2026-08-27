@@ -81,6 +81,14 @@ test('favicon events preserve the web contents id', async () => {
   expect(state.parentInvocations).toEqual([['ElectronBrowserView.handlePageFaviconUpdated', '12', ['https://example.com/favicon.png']]])
 })
 
+test('window open events preserve the web contents id and disposition', async () => {
+  const handleWindowOpen = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handleWindowOpen')
+
+  await handleWindowOpen('12', 'https://example.com/docs', 'foreground-tab')
+
+  expect(state.parentInvocations).toEqual([['ElectronBrowserView.handleWindowOpen', '12', 'https://example.com/docs', 'foreground-tab']])
+})
+
 test('context menu events retain the existing renderer signature', async () => {
   const event = { x: 1, y: 2 }
   const handleContextMenu = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handleContextMenu', false)

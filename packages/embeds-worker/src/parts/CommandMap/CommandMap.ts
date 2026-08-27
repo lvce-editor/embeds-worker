@@ -25,6 +25,7 @@ export const commandMap = {
   'ElectronWebContentsView.handlePageFaviconUpdated': ElectronWebContentsView.handlePageFaviconUpdated,
   'ElectronWebContentsView.handleTitleUpdated': ElectronWebContentsView.handleTitleUpdated,
   'ElectronWebContentsView.handleWillNavigate': ElectronWebContentsView.handleWillNavigate,
+  'ElectronWebContentsView.handleWindowOpen': ElectronWebContentsView.handleWindowOpen,
   'ElectronWebContentsView.hide': ElectronWebContentsView.hide,
   'ElectronWebContentsView.insertCss': ElectronWebContentsView.insertCss,
   'ElectronWebContentsView.insertJavaScript': ElectronWebContentsView.insertJavaScript,
