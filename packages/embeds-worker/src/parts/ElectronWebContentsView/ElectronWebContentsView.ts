@@ -1,9 +1,12 @@
-import * as CreateWebContentsView from '../CreateWebContentsView/CreateWebContentsView.ts'
 import * as EmbedsProcess from '../EmbedsProcess/EmbedsProcess.ts'
 import * as ForwardWebContentsViewEvent from '../ForwardWebContentsViewEvent/ForwardWebContentsViewEvent.ts'
 import * as LoadErrorCode from '../LoadErrorCode/LoadErrorCode.ts'
 
-export const { createWebContentsView } = CreateWebContentsView
+export const createWebContentsView = async (restoreId: string, fallThroughKeyBindings: any): Promise<any> => {
+  // @ts-ignore
+  const id = await EmbedsProcess.invoke('ElectronWebContentsView.createWebContentsView', restoreId, fallThroughKeyBindings)
+  return id
+}
 
 export const disposeWebContentsView = (id: string): Promise<void> => {
   return EmbedsProcess.invoke('ElectronWebContentsView.disposeWebContentsView', id)
