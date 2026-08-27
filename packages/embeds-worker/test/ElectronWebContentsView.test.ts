@@ -3,6 +3,7 @@ import { MockRpc } from '@lvce-editor/rpc'
 import * as AcceptLogin from '../src/parts/AcceptLogin/AcceptLogin.ts'
 import * as CancelLogin from '../src/parts/CancelLogin/CancelLogin.ts'
 import * as CapturePage from '../src/parts/CapturePage/CapturePage.ts'
+import * as CreateWebContentsView from '../src/parts/CreateWebContentsView/CreateWebContentsView.ts'
 import * as EmbedsProcess from '../src/parts/EmbedsProcess/EmbedsProcess.ts'
 import * as ForwardWebContentsViewEvent from '../src/parts/ForwardWebContentsViewEvent/ForwardWebContentsViewEvent.ts'
 import * as HandleLogin from '../src/parts/HandleLogin/HandleLogin.ts'
@@ -34,6 +35,12 @@ ParentRpc.set(
 beforeEach(() => {
   state.embedsProcessInvocations = []
   state.parentInvocations = []
+})
+
+test('createWebContentsView forwards the ipc id before the restore id', async () => {
+  await CreateWebContentsView.createWebContentsView(12, 34)
+
+  expect(state.embedsProcessInvocations).toEqual([['ElectronWebContentsView.createWebContentsView', 34, 12]])
 })
 
 test('acceptLogin forwards credentials to the embeds process', async () => {
