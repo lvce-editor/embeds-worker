@@ -102,10 +102,6 @@ export const copyImageAt = (id: string, x: number, y: number): Promise<void> => 
   return EmbedsProcess.invoke('ElectronWebContentsView.copyImageAt', id, x, y)
 }
 
-export const setFallthroughKeyBindings = (id: string, fallthroughKeybindings: any): Promise<void> => {
-  return EmbedsProcess.invokeAny('ElectronWebContentsView.setFallthroughKeyBindings', id, fallthroughKeybindings)
-}
-
 export const getStats = (id: string, fallthroughKeybindings: any): Promise<any> => {
   return EmbedsProcess.invoke('ElectronWebContentsView.getStats', id, fallthroughKeybindings)
 }
