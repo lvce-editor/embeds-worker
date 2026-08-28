@@ -8,6 +8,8 @@ import * as ForwardWebContentsViewEvent from '../src/parts/ForwardWebContentsVie
 import * as HandleLogin from '../src/parts/HandleLogin/HandleLogin.ts'
 import * as ParentRpc from '../src/parts/ParentRpc/ParentRpc.ts'
 import * as SetFallthroughKeyBindings from '../src/parts/SetFallthroughKeyBindings/SetFallthroughKeyBindings.ts'
+import * as SetZoomLevel from '../src/parts/SetZoomLevel/SetZoomLevel.ts'
+import * as ToggleDevTools from '../src/parts/ToggleDevTools/ToggleDevTools.ts'
 
 const state: { embedsProcessInvocations: readonly any[][]; parentInvocations: readonly any[][] } = {
   embedsProcessInvocations: [],
@@ -59,6 +61,18 @@ test('fallthrough keybindings are forwarded to the embeds process', async () => 
   await SetFallthroughKeyBindings.setFallthroughKeyBindings('12', [2050, 3074])
 
   expect(state.embedsProcessInvocations).toEqual([['ElectronWebContentsView.setFallthroughKeyBindings', '12', [2050, 3074]]])
+})
+
+test('setZoomLevel forwards the zoom level to the embeds process', async () => {
+  await SetZoomLevel.setZoomLevel('12', 0.5)
+
+  expect(state.embedsProcessInvocations).toEqual([['ElectronWebContentsView.setZoomLevel', '12', 0.5]])
+})
+
+test('toggleDevTools forwards to the embeds process', async () => {
+  await ToggleDevTools.toggleDevTools('12')
+
+  expect(state.embedsProcessInvocations).toEqual([['ElectronWebContentsView.toggleDevTools', '12']])
 })
 
 test('handleLogin forwards the web contents id and challenge to the renderer worker', async () => {

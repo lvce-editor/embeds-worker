@@ -6,6 +6,8 @@ import * as Exit from '../Exit/Exit.ts'
 import * as HandleLogin from '../HandleLogin/HandleLogin.ts'
 import * as Initialize from '../Initialize/Initialize.ts'
 import * as SetFallthroughKeyBindings from '../SetFallthroughKeyBindings/SetFallthroughKeyBindings.ts'
+import * as SetZoomLevel from '../SetZoomLevel/SetZoomLevel.ts'
+import * as ToggleDevTools from '../ToggleDevTools/ToggleDevTools.ts'
 
 export const commandMap = {
   'ElectronWebContentsView.acceptLogin': AcceptLogin.acceptLogin,
@@ -37,7 +39,9 @@ export const commandMap = {
   'ElectronWebContentsView.resizeWebContentsView': ElectronWebContentsView.resizeWebContentsView,
   'ElectronWebContentsView.setFallthroughKeyBindings': SetFallthroughKeyBindings.setFallthroughKeyBindings,
   'ElectronWebContentsView.setIframeSrc': ElectronWebContentsView.setIframeSrc,
+  'ElectronWebContentsView.setZoomLevel': SetZoomLevel.setZoomLevel,
   'ElectronWebContentsView.show': ElectronWebContentsView.show,
+  'ElectronWebContentsView.toggleDevTools': ToggleDevTools.toggleDevTools,
   'Exit.exit': Exit.exit,
   'Initialize.initialize': Initialize.initialize,
 }
