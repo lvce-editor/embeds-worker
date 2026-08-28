@@ -201,6 +201,14 @@ test('favicon events preserve the web contents id', async () => {
   expect(state.parentInvocations).toEqual([['ElectronBrowserView.handlePageFaviconUpdated', '12', ['https://example.com/favicon.png']]])
 })
 
+test('audio state changes preserve the web contents id', async () => {
+  const handleAudioStateChanged = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handleAudioStateChanged')
+
+  await handleAudioStateChanged('12', true)
+
+  expect(state.parentInvocations).toEqual([['ElectronBrowserView.handleAudioStateChanged', '12', true]])
+})
+
 test('window open events preserve the web contents id and disposition', async () => {
   const handleWindowOpen = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handleWindowOpen')
 

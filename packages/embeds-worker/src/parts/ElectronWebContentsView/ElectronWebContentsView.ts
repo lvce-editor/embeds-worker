@@ -90,8 +90,8 @@ export const insertCss = (id: string, css: string): Promise<void> => {
   return EmbedsProcess.invoke('ElectronWebContentsView.insertCss', id, css)
 }
 
-export const insertJavaScript = (id: string, code: string): Promise<any> => {
-  return EmbedsProcess.invoke('ElectronWebContentsView.insertJavaScript', id, code)
+export const insertJavaScript = (id: string, code: string, userGesture = false): Promise<any> => {
+  return EmbedsProcess.invokeAny('ElectronWebContentsView.insertJavaScript', id, code, userGesture)
 }
 
 export const cancelNavigation = (id: string): Promise<void> => {
@@ -109,6 +109,8 @@ export const copyImageAt = (id: string, x: number, y: number): Promise<void> => 
 export const getStats = (id: string, fallthroughKeybindings: any): Promise<any> => {
   return EmbedsProcess.invoke('ElectronWebContentsView.getStats', id, fallthroughKeybindings)
 }
+
+export const handleAudioStateChanged = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handleAudioStateChanged')
 
 export const handleDidNavigate = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handleDidNavigate')
 
