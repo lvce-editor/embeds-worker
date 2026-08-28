@@ -50,6 +50,10 @@ export const setIframeSrc = async (id: string, iframeSrc: string): Promise<void>
   }
 }
 
+export const setAudioMuted = (id: string, muted: boolean): Promise<void> => {
+  return EmbedsProcess.invokeAny('ElectronWebContentsView.setAudioMuted', id, muted)
+}
+
 export const focus = (id: string): Promise<void> => {
   return EmbedsProcess.invoke('ElectronWebContentsView.focus', id)
 }

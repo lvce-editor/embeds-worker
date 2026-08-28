@@ -3,6 +3,7 @@ import { MockRpc } from '@lvce-editor/rpc'
 import * as AcceptLogin from '../src/parts/AcceptLogin/AcceptLogin.ts'
 import * as CancelLogin from '../src/parts/CancelLogin/CancelLogin.ts'
 import * as CapturePage from '../src/parts/CapturePage/CapturePage.ts'
+import * as ElectronWebContentsView from '../src/parts/ElectronWebContentsView/ElectronWebContentsView.ts'
 import * as EmbedsProcess from '../src/parts/EmbedsProcess/EmbedsProcess.ts'
 import * as ForwardWebContentsViewEvent from '../src/parts/ForwardWebContentsViewEvent/ForwardWebContentsViewEvent.ts'
 import * as HandleLogin from '../src/parts/HandleLogin/HandleLogin.ts'
@@ -53,6 +54,12 @@ test('capturePage forwards the web contents id to the embeds process', async () 
   await CapturePage.capturePage('12')
 
   expect(state.embedsProcessInvocations).toEqual([['ElectronWebContentsView.capturePage', '12']])
+})
+
+test('setAudioMuted forwards the audio state to the embeds process', async () => {
+  await ElectronWebContentsView.setAudioMuted('12', true)
+
+  expect(state.embedsProcessInvocations).toEqual([['ElectronWebContentsView.setAudioMuted', '12', true]])
 })
 
 test('fallthrough keybindings are forwarded to the embeds process', async () => {
