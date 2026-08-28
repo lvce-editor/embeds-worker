@@ -21,6 +21,7 @@ export const commandMap = {
   'ElectronWebContentsView.getStats': ElectronWebContentsView.getStats,
   'ElectronWebContentsView.handleContextMenu': ElectronWebContentsView.handleContextMenu,
   'ElectronWebContentsView.handleDidNavigate': ElectronWebContentsView.handleDidNavigate,
+  'ElectronWebContentsView.handleKeyBinding': ElectronWebContentsView.handleKeyBinding,
   'ElectronWebContentsView.handleLogin': HandleLogin.handleLogin,
   'ElectronWebContentsView.handlePageFaviconUpdated': ElectronWebContentsView.handlePageFaviconUpdated,
   'ElectronWebContentsView.handleTitleUpdated': ElectronWebContentsView.handleTitleUpdated,
