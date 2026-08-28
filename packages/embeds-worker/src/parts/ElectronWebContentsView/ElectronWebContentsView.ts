@@ -102,16 +102,13 @@ export const copyImageAt = (id: string, x: number, y: number): Promise<void> => 
   return EmbedsProcess.invoke('ElectronWebContentsView.copyImageAt', id, x, y)
 }
 
-export const setFallthroughKeyBindings = async (id: string, fallthroughKeybindings: any): Promise<void> => {
-  // TODO
-  // return EmbedsProcess.invoke('ElectronWebContentsView.setFallthroughKeyBindings', id, fallthroughKeybindings)
-}
-
 export const getStats = (id: string, fallthroughKeybindings: any): Promise<any> => {
   return EmbedsProcess.invoke('ElectronWebContentsView.getStats', id, fallthroughKeybindings)
 }
 
 export const handleDidNavigate = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handleDidNavigate')
+
+export const handleKeyBinding = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handleKeyBinding')
 
 export const handlePageFaviconUpdated = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handlePageFaviconUpdated')
 

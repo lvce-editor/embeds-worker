@@ -5,6 +5,7 @@ import * as ElectronWebContentsView from '../ElectronWebContentsView/ElectronWeb
 import * as Exit from '../Exit/Exit.ts'
 import * as HandleLogin from '../HandleLogin/HandleLogin.ts'
 import * as Initialize from '../Initialize/Initialize.ts'
+import * as SetFallthroughKeyBindings from '../SetFallthroughKeyBindings/SetFallthroughKeyBindings.ts'
 
 export const commandMap = {
   'ElectronWebContentsView.acceptLogin': AcceptLogin.acceptLogin,
@@ -21,6 +22,7 @@ export const commandMap = {
   'ElectronWebContentsView.getStats': ElectronWebContentsView.getStats,
   'ElectronWebContentsView.handleContextMenu': ElectronWebContentsView.handleContextMenu,
   'ElectronWebContentsView.handleDidNavigate': ElectronWebContentsView.handleDidNavigate,
+  'ElectronWebContentsView.handleKeyBinding': ElectronWebContentsView.handleKeyBinding,
   'ElectronWebContentsView.handleLogin': HandleLogin.handleLogin,
   'ElectronWebContentsView.handlePageFaviconUpdated': ElectronWebContentsView.handlePageFaviconUpdated,
   'ElectronWebContentsView.handleTitleUpdated': ElectronWebContentsView.handleTitleUpdated,
@@ -33,7 +35,7 @@ export const commandMap = {
   'ElectronWebContentsView.openDevtools': ElectronWebContentsView.openDevtools,
   'ElectronWebContentsView.reload': ElectronWebContentsView.reload,
   'ElectronWebContentsView.resizeWebContentsView': ElectronWebContentsView.resizeWebContentsView,
-  'ElectronWebContentsView.setFallthroughKeyBindings': ElectronWebContentsView.setFallthroughKeyBindings,
+  'ElectronWebContentsView.setFallthroughKeyBindings': SetFallthroughKeyBindings.setFallthroughKeyBindings,
   'ElectronWebContentsView.setIframeSrc': ElectronWebContentsView.setIframeSrc,
   'ElectronWebContentsView.show': ElectronWebContentsView.show,
   'Exit.exit': Exit.exit,
