@@ -60,8 +60,13 @@ test('cancelLogin forwards the challenge to the embeds process', async () => {
 })
 
 test('capturePage forwards the web contents id to the embeds process', async () => {
-  await CapturePage.capturePage('12')
+  const png = new Uint8Array([137, 80, 78, 71])
+  setEmbedsProcessInvoke(async (method: string, ...args: readonly any[]) => {
+    state.embedsProcessInvocations = [...state.embedsProcessInvocations, [method, ...args]]
+    return png
+  })
 
+  await expect(CapturePage.capturePage('12')).resolves.toBe(png)
   expect(state.embedsProcessInvocations).toEqual([['ElectronWebContentsView.capturePage', '12']])
 })
 
