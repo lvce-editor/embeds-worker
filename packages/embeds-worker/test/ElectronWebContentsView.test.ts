@@ -228,12 +228,18 @@ test('audio state changes preserve the web contents id', async () => {
   expect(state.parentInvocations).toEqual([['ElectronBrowserView.handleAudioStateChanged', '12', true]])
 })
 
-test('window open events preserve the web contents id and disposition', async () => {
+test('window open events preserve the opener and child web contents ids', async () => {
   const handleWindowOpen = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handleWindowOpen')
 
-  await handleWindowOpen('12', 'https://example.com/docs', 'foreground-tab')
+  await handleWindowOpen('12', '13', 'https://example.com/docs', 'foreground-tab')
 
-  expect(state.parentInvocations).toEqual([['ElectronBrowserView.handleWindowOpen', '12', 'https://example.com/docs', 'foreground-tab']])
+  expect(state.parentInvocations).toEqual([['ElectronBrowserView.handleWindowOpen', '12', '13', 'https://example.com/docs', 'foreground-tab']])
+})
+
+test('destroyed events preserve the child web contents id', async () => {
+  await ElectronWebContentsView.handleBrowserViewDestroyed('13')
+
+  expect(state.parentInvocations).toEqual([['ElectronBrowserView.handleBrowserViewDestroyed', '13']])
 })
 
 test('context menu events retain the existing renderer signature', async () => {

@@ -23,6 +23,7 @@ export const commandMap = {
   'ElectronWebContentsView.getDomTree': ElectronWebContentsView.getDomTree,
   'ElectronWebContentsView.getStats': ElectronWebContentsView.getStats,
   'ElectronWebContentsView.handleAudioStateChanged': ElectronWebContentsView.handleAudioStateChanged,
+  'ElectronWebContentsView.handleBrowserViewDestroyed': ElectronWebContentsView.handleBrowserViewDestroyed,
   'ElectronWebContentsView.handleContextMenu': ElectronWebContentsView.handleContextMenu,
   'ElectronWebContentsView.handleDidNavigate': ElectronWebContentsView.handleDidNavigate,
   'ElectronWebContentsView.handleKeyBinding': ElectronWebContentsView.handleKeyBinding,
