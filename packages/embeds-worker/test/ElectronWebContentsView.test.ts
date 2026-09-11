@@ -250,3 +250,19 @@ test('context menu events retain the existing renderer signature', async () => {
 
   expect(state.parentInvocations).toEqual([['ElectronBrowserView.handleContextMenu', event]])
 })
+
+test('workflow navigation propagates load errors instead of loading a fallback', async () => {
+  setEmbedsProcessInvoke(async () => {
+    throw new Error('navigation failed')
+  })
+  await expect(ElectronWebContentsView.navigate(12, 'https://example.com')).rejects.toThrow('navigation failed')
+})
+
+test('workflow commands forward the target tab and native key modifiers', async () => {
+  await ElectronWebContentsView.navigate(12, 'https://example.com')
+  await ElectronWebContentsView.pressKey(12, 'L', ['shift'])
+  expect(state.embedsProcessInvocations).toEqual([
+    ['ElectronWebContentsView.setIframeSrc', 12, 'https://example.com'],
+    ['ElectronWebContentsView.pressKey', 12, 'L', ['shift']],
+  ])
+})
