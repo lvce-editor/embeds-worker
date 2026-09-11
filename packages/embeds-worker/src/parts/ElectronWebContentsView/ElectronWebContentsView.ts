@@ -128,7 +128,7 @@ export const handleWindowOpen = ForwardWebContentsViewEvent.forwardWebContentsVi
 
 export const handleContextMenu = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handleContextMenu', false)
 
-export const pressKey = (id: number, keyCode: string, modifiers: string[]): Promise<void> => {
+export const pressKey = (id: number, keyCode: string, modifiers: readonly string[]): Promise<void> => {
   return EmbedsProcess.invokeAny('ElectronWebContentsView.pressKey', id, keyCode, modifiers)
 }
 
