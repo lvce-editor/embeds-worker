@@ -127,3 +127,11 @@ export const handleWillNavigate = ForwardWebContentsViewEvent.forwardWebContents
 export const handleWindowOpen = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handleWindowOpen')
 
 export const handleContextMenu = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handleContextMenu', false)
+
+export const pressKey = (id: number, keyCode: string, modifiers: readonly string[]): Promise<void> => {
+  return EmbedsProcess.invokeAny('ElectronWebContentsView.pressKey', id, keyCode, modifiers)
+}
+
+export const navigate = (id: number, url: string): Promise<void> => {
+  return EmbedsProcess.invokeAny('ElectronWebContentsView.setIframeSrc', id, url)
+}
