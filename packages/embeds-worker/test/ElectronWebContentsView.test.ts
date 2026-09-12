@@ -97,7 +97,7 @@ test('web contents view commands forward their arguments to the embeds process',
   await ElectronWebContentsView.setIframeSrc('12', 'https://example.com')
 
   expect(state.embedsProcessInvocations).toEqual([
-    ['ElectronWebContentsView.createWebContentsView', '0', [2050]],
+    ['ElectronWebContentsView.createWebContentsView', '0', [2050], 0],
     ['ElectronWebContentsView.disposeWebContentsView', '12'],
     ['ElectronWebContentsView.resizeBrowserView', '12', 1, 2, 300, 200],
     ['ElectronWebContentsView.focus', '12'],
@@ -265,4 +265,9 @@ test('workflow commands forward the target tab and native key modifiers', async 
     ['ElectronWebContentsView.setIframeSrc', 12, 'https://example.com'],
     ['ElectronWebContentsView.pressKey', 12, 'L', ['shift']],
   ])
+})
+
+test('passes the requesting window through native view creation', async () => {
+  await ElectronWebContentsView.createWebContentsView('0', [2050], 7)
+  expect(state.embedsProcessInvocations).toEqual([['ElectronWebContentsView.createWebContentsView', '0', [2050], 7]])
 })
