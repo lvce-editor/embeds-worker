@@ -6,13 +6,8 @@
       "project": ["*.js", "scripts/*.js"]
     },
     "packages/build": {
-      "entry": [
-        "src/build.js",
-        "src/build-static.js",
-        "src/computeNodeModulesCacheKey.js",
-        "src/dev.js"
-      ],
-      "project": ["src/**/*.js"]
+      "entry": ["src/build.ts", "src/build-static.ts", "src/computeNodeModulesCacheKey.ts", "src/dev.ts"],
+      "project": ["src/**/*.ts"]
     },
     "packages/e2e": {
       "entry": ["src/**/*.ts"],
