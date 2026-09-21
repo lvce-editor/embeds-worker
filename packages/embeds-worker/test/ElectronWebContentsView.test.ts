@@ -148,7 +148,7 @@ test('setIframeSrc loads the fallback page for other navigation errors', async (
 
   expect(state.embedsProcessInvocations).toEqual([
     ['ElectronWebContentsView.setIframeSrc', '12', 'https://example.com'],
-    ['ElectronWebContentsView.setIframeSrcFallback', '12', 'ERR_UNKNOWN', 'network error'],
+    ['ElectronWebContentsView.setIframeSrcFallback', '12', 'ERR_UNKNOWN', 'network error', 'https://example.com'],
   ])
   log.mockRestore()
 })
