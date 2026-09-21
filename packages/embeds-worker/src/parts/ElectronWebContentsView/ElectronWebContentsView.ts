@@ -8,6 +8,10 @@ export const createWebContentsView = async (restoreId: string, fallThroughKeyBin
   return id
 }
 
+export const detachForHotReload = (): Promise<readonly number[]> => {
+  return EmbedsProcess.invokeAny('ElectronWebContentsView.detachForHotReload')
+}
+
 export const disposeWebContentsView = (id: string): Promise<void> => {
   return EmbedsProcess.invoke('ElectronWebContentsView.disposeWebContentsView', id)
 }
