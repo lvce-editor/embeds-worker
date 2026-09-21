@@ -17,6 +17,7 @@ export const commandMap = {
   'ElectronWebContentsView.capturePage': CapturePage.capturePage,
   'ElectronWebContentsView.copyImageAt': ElectronWebContentsView.copyImageAt,
   'ElectronWebContentsView.createWebContentsView': ElectronWebContentsView.createWebContentsView,
+  'ElectronWebContentsView.detachForHotReload': ElectronWebContentsView.detachForHotReload,
   'ElectronWebContentsView.disposeWebContentsView': ElectronWebContentsView.disposeWebContentsView,
   'ElectronWebContentsView.focus': ElectronWebContentsView.focus,
   'ElectronWebContentsView.forward': ElectronWebContentsView.forward,
