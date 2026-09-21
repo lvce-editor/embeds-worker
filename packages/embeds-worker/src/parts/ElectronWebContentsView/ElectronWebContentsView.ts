@@ -20,10 +20,10 @@ export const resizeWebContentsView = (id: string, x: number, y: number, width: n
   return EmbedsProcess.invoke('ElectronWebContentsView.resizeBrowserView', id, x, y, width, height)
 }
 
-const setIframeSrcFallback = async (id: string, error: any): Promise<void> => {
+const setIframeSrcFallback = async (id: string, iframeSrc: string, error: any): Promise<void> => {
   const { code, message } = error
 
-  await EmbedsProcess.invoke('ElectronWebContentsView.setIframeSrcFallback', id, code, message)
+  await EmbedsProcess.invokeAny('ElectronWebContentsView.setIframeSrcFallback', id, code, message, iframeSrc)
 }
 
 export const setIframeSrc = async (id: string, iframeSrc: string): Promise<void> => {
@@ -47,7 +47,7 @@ export const setIframeSrc = async (id: string, iframeSrc: string): Promise<void>
       return
     }
     try {
-      await setIframeSrcFallback(id, error)
+      await setIframeSrcFallback(id, iframeSrc, error)
     } catch (error) {
       console.warn(`Failed to set iframe src`, error)
     }
