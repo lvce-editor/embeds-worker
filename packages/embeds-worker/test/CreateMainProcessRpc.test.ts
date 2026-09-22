@@ -4,7 +4,7 @@ import { createMainProcessRpc } from '../src/parts/CreateMainProcessRpc/CreateMa
 import * as ParentRpc from '../src/parts/ParentRpc/ParentRpc.ts'
 
 const create = jest.spyOn(MessagePortRpcClient as any, 'create').mockImplementation(async () => ({}))
-const invokeAndTransfer = jest.fn(async () => undefined)
+const invokeAndTransfer = jest.fn(async (..._args: readonly unknown[]) => undefined)
 
 afterEach(() => {
   create.mockClear()
@@ -20,4 +20,10 @@ test('createMainProcessRpc uses the browser message port rpc client', async () =
     commandMap: expect.any(Object),
     messagePort: expect.any(MessagePort),
   })
+  expect(invokeAndTransfer).toHaveBeenCalledWith(
+    'SendMessagePortToMainProcess.sendMessagePortToMainProcess',
+    expect.any(MessagePort),
+    'ElectronWebContentsView.handleMessagePort',
+    1007,
+  )
 })
