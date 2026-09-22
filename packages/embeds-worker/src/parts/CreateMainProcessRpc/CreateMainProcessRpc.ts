@@ -1,4 +1,4 @@
-import { ElectronMessagePortRpcClient } from '@lvce-editor/rpc'
+import { MessagePortRpcClient } from '@lvce-editor/rpc'
 import * as MainProcess from '../MainProcess/MainProcess.ts'
 import * as MainProcessCommandMap from '../MainProcessCommandMap/MainProcessCommandMap.ts'
 import * as ParentRpc from '../ParentRpc/ParentRpc.ts'
@@ -14,7 +14,7 @@ export const createMainProcessRpc = async (windowId: number): Promise<void> => {
     'ElectronWebContentsView.handleMessagePort',
     connectionId,
   )
-  const rpc = await ElectronMessagePortRpcClient.create({
+  const rpc = await MessagePortRpcClient.create({
     commandMap: MainProcessCommandMap.commandMap,
     messagePort: port1,
   })
