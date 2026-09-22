@@ -1,5 +1,5 @@
-import * as EmbedsProcess from '../EmbedsProcess/EmbedsProcess.ts'
+import * as MainProcess from '../MainProcess/MainProcess.ts'
 
 export const toggleDevTools = (id: string): Promise<void> => {
-  return EmbedsProcess.invokeAny('ElectronWebContentsView.toggleDevTools', id)
+  return MainProcess.invokeAny('ElectronWebContentsViewFunctions.toggleDevTools', id)
 }

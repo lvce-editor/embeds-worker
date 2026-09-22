@@ -1,5 +1,5 @@
-import * as EmbedsProcess from '../EmbedsProcess/EmbedsProcess.ts'
+import * as MainProcess from '../MainProcess/MainProcess.ts'
 
 export const setFallthroughKeyBindings = (id: string, fallthroughKeybindings: any): Promise<void> => {
-  return EmbedsProcess.invokeAny('ElectronWebContentsView.setFallthroughKeyBindings', id, fallthroughKeybindings)
+  return MainProcess.invokeAny('ElectronWebContentsViewFunctions.setFallthroughKeyBindings', id, fallthroughKeybindings)
 }

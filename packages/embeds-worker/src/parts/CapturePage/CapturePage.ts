@@ -1,5 +1,5 @@
-import * as EmbedsProcess from '../EmbedsProcess/EmbedsProcess.ts'
+import * as MainProcess from '../MainProcess/MainProcess.ts'
 
 export const capturePage = (id: string): Promise<Uint8Array> => {
-  return EmbedsProcess.invokeAny('ElectronWebContentsView.capturePage', id)
+  return MainProcess.invokeAny('ElectronWebContentsViewFunctions.capturePage', id)
 }
