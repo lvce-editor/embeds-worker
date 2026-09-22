@@ -4,9 +4,9 @@ import * as AcceptLogin from '../src/parts/AcceptLogin/AcceptLogin.ts'
 import * as CancelLogin from '../src/parts/CancelLogin/CancelLogin.ts'
 import * as CapturePage from '../src/parts/CapturePage/CapturePage.ts'
 import * as ElectronWebContentsView from '../src/parts/ElectronWebContentsView/ElectronWebContentsView.ts'
-import * as EmbedsProcess from '../src/parts/EmbedsProcess/EmbedsProcess.ts'
 import * as ForwardWebContentsViewEvent from '../src/parts/ForwardWebContentsViewEvent/ForwardWebContentsViewEvent.ts'
 import * as HandleLogin from '../src/parts/HandleLogin/HandleLogin.ts'
+import * as MainProcess from '../src/parts/MainProcess/MainProcess.ts'
 import * as ParentRpc from '../src/parts/ParentRpc/ParentRpc.ts'
 import * as SetFallthroughKeyBindings from '../src/parts/SetFallthroughKeyBindings/SetFallthroughKeyBindings.ts'
 import * as SetZoomLevel from '../src/parts/SetZoomLevel/SetZoomLevel.ts'
@@ -18,7 +18,7 @@ const state: { embedsProcessInvocations: readonly any[][]; parentInvocations: re
 }
 
 const setEmbedsProcessInvoke = (invoke: (method: string, ...args: readonly any[]) => Promise<any>): void => {
-  EmbedsProcess.set(
+  MainProcess.set(
     MockRpc.create({
       commandMap: {},
       invoke,
@@ -67,13 +67,13 @@ test('capturePage forwards the web contents id to the embeds process', async () 
   })
 
   await expect(CapturePage.capturePage('12')).resolves.toBe(png)
-  expect(state.embedsProcessInvocations).toEqual([['ElectronWebContentsView.capturePage', '12']])
+  expect(state.embedsProcessInvocations).toEqual([['ElectronWebContentsViewFunctions.capturePage', '12']])
 })
 
 test('setAudioMuted forwards the audio state to the embeds process', async () => {
   await ElectronWebContentsView.setAudioMuted('12', true)
 
-  expect(state.embedsProcessInvocations).toEqual([['ElectronWebContentsView.setAudioMuted', '12', true]])
+  expect(state.embedsProcessInvocations).toEqual([['ElectronWebContentsViewFunctions.setAudioMuted', '12', true]])
 })
 
 test('web contents view commands forward their arguments to the embeds process', async () => {
@@ -97,24 +97,26 @@ test('web contents view commands forward their arguments to the embeds process',
   await ElectronWebContentsView.setIframeSrc('12', 'https://example.com')
 
   expect(state.embedsProcessInvocations).toEqual([
-    ['ElectronWebContentsView.createWebContentsView', '0', [2050], 0],
+    ['ElectronWebContentsView.createWebContentsView', '0', 0, 1000],
+    ['ElectronWebContentsViewFunctions.setBackgroundColor', undefined, 'white'],
+    ['ElectronWebContentsViewFunctions.setFallthroughKeyBindings', undefined, [2050]],
     ['ElectronWebContentsView.disposeWebContentsView', '12'],
-    ['ElectronWebContentsView.resizeBrowserView', '12', 1, 2, 300, 200],
-    ['ElectronWebContentsView.focus', '12'],
-    ['ElectronWebContentsView.openDevtools', '12'],
-    ['ElectronWebContentsView.reload', '12'],
-    ['ElectronWebContentsView.show', '12'],
-    ['ElectronWebContentsView.hide', '12'],
-    ['ElectronWebContentsView.forward', '12'],
-    ['ElectronWebContentsView.backward', '12'],
-    ['ElectronWebContentsView.getDomTree', '12'],
-    ['ElectronWebContentsView.insertCss', '12', 'body {}'],
-    ['ElectronWebContentsView.insertJavaScript', '12', 'document.title', false],
-    ['ElectronWebContentsView.cancelNavigation', '12'],
-    ['ElectronWebContentsView.inspectElement', '12', 10, 20],
-    ['ElectronWebContentsView.copyImageAt', '12', 30, 40],
-    ['ElectronWebContentsView.getStats', '12', [2050]],
-    ['ElectronWebContentsView.setIframeSrc', '12', 'https://example.com'],
+    ['ElectronWebContentsViewFunctions.resizeBrowserView', '12', 1, 2, 300, 200],
+    ['ElectronWebContentsViewFunctions.focus', '12'],
+    ['ElectronWebContentsViewFunctions.openDevtools', '12'],
+    ['ElectronWebContentsViewFunctions.reload', '12'],
+    ['ElectronWebContentsViewFunctions.show', '12'],
+    ['ElectronWebContentsViewFunctions.hide', '12'],
+    ['ElectronWebContentsViewFunctions.forward', '12'],
+    ['ElectronWebContentsViewFunctions.backward', '12'],
+    ['ElectronWebContentsViewFunctions.getDomTree', '12'],
+    ['ElectronWebContentsViewFunctions.insertCss', '12', 'body {}'],
+    ['ElectronWebContentsViewFunctions.insertJavaScript', '12', 'document.title', false],
+    ['ElectronWebContentsViewFunctions.cancelNavigation', '12'],
+    ['ElectronWebContentsViewFunctions.inspectElement', '12', 10, 20],
+    ['ElectronWebContentsViewFunctions.copyImageAt', '12', 30, 40],
+    ['ElectronWebContentsViewFunctions.getStats', '12', [2050]],
+    ['ElectronWebContentsViewFunctions.setIframeSrc', '12', 'https://example.com'],
   ])
 })
 
@@ -139,7 +141,7 @@ test('setIframeSrc loads the fallback page for other navigation errors', async (
   const log = jest.spyOn(console, 'log').mockImplementation(() => {})
   setEmbedsProcessInvoke(async (method: string, ...args: readonly any[]) => {
     state.embedsProcessInvocations = [...state.embedsProcessInvocations, [method, ...args]]
-    if (method === 'ElectronWebContentsView.setIframeSrc') {
+    if (method === 'ElectronWebContentsViewFunctions.setIframeSrc') {
       throw { code: 'ERR_UNKNOWN', message: 'network error' }
     }
   })
@@ -147,8 +149,8 @@ test('setIframeSrc loads the fallback page for other navigation errors', async (
   await ElectronWebContentsView.setIframeSrc('12', 'https://example.com')
 
   expect(state.embedsProcessInvocations).toEqual([
-    ['ElectronWebContentsView.setIframeSrc', '12', 'https://example.com'],
-    ['ElectronWebContentsView.setIframeSrcFallback', '12', 'ERR_UNKNOWN', 'network error', 'https://example.com'],
+    ['ElectronWebContentsViewFunctions.setIframeSrc', '12', 'https://example.com'],
+    ['ElectronWebContentsViewFunctions.setIframeSrcFallback', '12', 'ERR_UNKNOWN', 'network error', 'https://example.com'],
   ])
   log.mockRestore()
 })
@@ -170,19 +172,19 @@ test('setIframeSrc contains fallback failures', async () => {
 test('fallthrough keybindings are forwarded to the embeds process', async () => {
   await SetFallthroughKeyBindings.setFallthroughKeyBindings('12', [2050, 3074])
 
-  expect(state.embedsProcessInvocations).toEqual([['ElectronWebContentsView.setFallthroughKeyBindings', '12', [2050, 3074]]])
+  expect(state.embedsProcessInvocations).toEqual([['ElectronWebContentsViewFunctions.setFallthroughKeyBindings', '12', [2050, 3074]]])
 })
 
 test('setZoomLevel forwards the zoom level to the embeds process', async () => {
   await SetZoomLevel.setZoomLevel('12', 0.5)
 
-  expect(state.embedsProcessInvocations).toEqual([['ElectronWebContentsView.setZoomLevel', '12', 0.5]])
+  expect(state.embedsProcessInvocations).toEqual([['ElectronWebContentsViewFunctions.setZoomLevel', '12', 0.5]])
 })
 
 test('toggleDevTools forwards to the embeds process', async () => {
   await ToggleDevTools.toggleDevTools('12')
 
-  expect(state.embedsProcessInvocations).toEqual([['ElectronWebContentsView.toggleDevTools', '12']])
+  expect(state.embedsProcessInvocations).toEqual([['ElectronWebContentsViewFunctions.toggleDevTools', '12']])
 })
 
 test('handleLogin forwards the web contents id and challenge to the renderer worker', async () => {
@@ -262,12 +264,16 @@ test('workflow commands forward the target tab and native key modifiers', async 
   await ElectronWebContentsView.navigate(12, 'https://example.com')
   await ElectronWebContentsView.pressKey(12, 'L', ['shift'])
   expect(state.embedsProcessInvocations).toEqual([
-    ['ElectronWebContentsView.setIframeSrc', 12, 'https://example.com'],
-    ['ElectronWebContentsView.pressKey', 12, 'L', ['shift']],
+    ['ElectronWebContentsViewFunctions.setIframeSrc', 12, 'https://example.com'],
+    ['ElectronWebContentsViewFunctions.pressKey', 12, 'L', ['shift']],
   ])
 })
 
 test('passes the requesting window through native view creation', async () => {
   await ElectronWebContentsView.createWebContentsView('0', [2050], 7)
-  expect(state.embedsProcessInvocations).toEqual([['ElectronWebContentsView.createWebContentsView', '0', [2050], 7]])
+  expect(state.embedsProcessInvocations).toEqual([
+    ['ElectronWebContentsView.createWebContentsView', '0', 7, 1007],
+    ['ElectronWebContentsViewFunctions.setBackgroundColor', undefined, 'white'],
+    ['ElectronWebContentsViewFunctions.setFallthroughKeyBindings', undefined, [2050]],
+  ])
 })

@@ -1,7 +1,5 @@
-import { createEmbedsProcessRpc } from '../CreateEmbedsProcessRpc/CreateEmbedsProcessRpc.ts'
-import * as EmbedsProcess from '../EmbedsProcess/EmbedsProcess.ts'
+import * as CreateMainProcessRpc from '../CreateMainProcessRpc/CreateMainProcessRpc.ts'
 
-export const initialize = async (): Promise<void> => {
-  const rpc = await createEmbedsProcessRpc()
-  EmbedsProcess.set(rpc)
+export const initialize = async (windowId: number): Promise<void> => {
+  await CreateMainProcessRpc.createMainProcessRpc(windowId)
 }

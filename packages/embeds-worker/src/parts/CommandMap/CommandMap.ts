@@ -10,6 +10,15 @@ import * as SetZoomLevel from '../SetZoomLevel/SetZoomLevel.ts'
 import * as ToggleDevTools from '../ToggleDevTools/ToggleDevTools.ts'
 
 export const commandMap = {
+  'ElectronBrowserView.handleAudioStateChanged': ElectronWebContentsView.handleAudioStateChanged,
+  'ElectronBrowserView.handleBrowserViewDestroyed': ElectronWebContentsView.handleBrowserViewDestroyed,
+  'ElectronBrowserView.handleContextMenu': ElectronWebContentsView.handleContextMenu,
+  'ElectronBrowserView.handleDidNavigate': ElectronWebContentsView.handleDidNavigate,
+  'ElectronBrowserView.handleKeyBinding': ElectronWebContentsView.handleKeyBinding,
+  'ElectronBrowserView.handlePageFaviconUpdated': ElectronWebContentsView.handlePageFaviconUpdated,
+  'ElectronBrowserView.handleTitleUpdated': ElectronWebContentsView.handleTitleUpdated,
+  'ElectronBrowserView.handleWillNavigate': ElectronWebContentsView.handleWillNavigate,
+  'ElectronBrowserView.handleWindowOpen': ElectronWebContentsView.handleWindowOpen,
   'ElectronWebContentsView.acceptLogin': AcceptLogin.acceptLogin,
   'ElectronWebContentsView.backward': ElectronWebContentsView.backward,
   'ElectronWebContentsView.cancelLogin': CancelLogin.cancelLogin,

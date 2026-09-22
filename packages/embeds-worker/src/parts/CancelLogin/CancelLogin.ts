@@ -1,5 +1,5 @@
-import * as EmbedsProcess from '../EmbedsProcess/EmbedsProcess.ts'
+import * as MainProcess from '../MainProcess/MainProcess.ts'
 
 export const cancelLogin = (requestId: string): Promise<void> => {
-  return EmbedsProcess.invokeAny('ElectronWebContentsView.cancelLogin', requestId)
+  return MainProcess.invokeAny('ElectronWebContentsView.cancelLogin', requestId)
 }

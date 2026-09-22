@@ -1,5 +1,5 @@
-import * as EmbedsProcess from '../EmbedsProcess/EmbedsProcess.ts'
+import * as MainProcess from '../MainProcess/MainProcess.ts'
 
 export const setZoomLevel = (id: string, zoomLevel: number): Promise<void> => {
-  return EmbedsProcess.invokeAny('ElectronWebContentsView.setZoomLevel', id, zoomLevel)
+  return MainProcess.invokeAny('ElectronWebContentsViewFunctions.setZoomLevel', id, zoomLevel)
 }
