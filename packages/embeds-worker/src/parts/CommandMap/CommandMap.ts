@@ -48,6 +48,7 @@ export const commandMap = {
   'ElectronWebContentsView.inspectElement': ElectronWebContentsView.inspectElement,
   'ElectronWebContentsView.navigate': ElectronWebContentsView.navigate,
   'ElectronWebContentsView.openDevtools': ElectronWebContentsView.openDevtools,
+  'ElectronWebContentsView.passwords': ElectronWebContentsView.passwords,
   'ElectronWebContentsView.pressKey': ElectronWebContentsView.pressKey,
   'ElectronWebContentsView.reload': ElectronWebContentsView.reload,
   'ElectronWebContentsView.resizeWebContentsView': ElectronWebContentsView.resizeWebContentsView,

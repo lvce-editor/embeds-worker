@@ -144,3 +144,6 @@ export const pressKey = (id: number, keyCode: string, modifiers: readonly string
 export const navigate = (id: number, url: string): Promise<void> => {
   return MainProcess.invokeAny('ElectronWebContentsViewFunctions.setIframeSrc', id, url)
 }
+
+export const passwords = (id: number, action: string): Promise<void> =>
+  MainProcess.invokeAny('ElectronWebContentsViewFunctions.passwords', id, action)

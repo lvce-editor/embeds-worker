@@ -277,3 +277,8 @@ test('passes the requesting window through native view creation', async () => {
     ['ElectronWebContentsViewFunctions.setFallthroughKeyBindings', undefined, [2050]],
   ])
 })
+
+test('password action forwards only tab identity and action, without credentials', async () => {
+  await expect(ElectronWebContentsView.passwords(12, 'fill')).resolves.toBeUndefined()
+  expect(state.embedsProcessInvocations).toEqual([['ElectronWebContentsViewFunctions.passwords', 12, 'fill']])
+})
