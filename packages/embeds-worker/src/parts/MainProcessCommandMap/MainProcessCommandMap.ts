@@ -2,7 +2,8 @@ import * as ForwardWebContentsViewEvent from '../ForwardWebContentsViewEvent/For
 
 const handleAudioStateChanged = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handleAudioStateChanged')
 const handleBrowserViewDestroyed = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handleBrowserViewDestroyed')
-const handleContextMenu = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handleContextMenu', false)
+// Direct events already contain browserViewId inside the payload; preserve the first argument.
+const handleContextMenu = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handleContextMenu')
 const handleDidNavigate = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handleDidNavigate')
 const handleKeyBinding = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handleKeyBinding')
 const handlePageFaviconUpdated = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handlePageFaviconUpdated')
