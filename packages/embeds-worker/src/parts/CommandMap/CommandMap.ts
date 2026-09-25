@@ -15,6 +15,7 @@ export const commandMap = {
   'ElectronBrowserView.handleContextMenu': ElectronWebContentsView.handleContextMenu,
   'ElectronBrowserView.handleDidNavigate': ElectronWebContentsView.handleDidNavigate,
   'ElectronBrowserView.handleKeyBinding': ElectronWebContentsView.handleKeyBinding,
+  'ElectronBrowserView.handleLogin': HandleLogin.handleLogin,
   'ElectronBrowserView.handlePageFaviconUpdated': ElectronWebContentsView.handlePageFaviconUpdated,
   'ElectronBrowserView.handleTitleUpdated': ElectronWebContentsView.handleTitleUpdated,
   'ElectronBrowserView.handleWillNavigate': ElectronWebContentsView.handleWillNavigate,
