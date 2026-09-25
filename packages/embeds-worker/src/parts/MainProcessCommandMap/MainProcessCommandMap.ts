@@ -1,4 +1,5 @@
 import * as ForwardWebContentsViewEvent from '../ForwardWebContentsViewEvent/ForwardWebContentsViewEvent.ts'
+import * as HandleLogin from '../HandleLogin/HandleLogin.ts'
 
 const handleAudioStateChanged = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handleAudioStateChanged')
 const handleBrowserViewDestroyed = ForwardWebContentsViewEvent.forwardWebContentsViewEvent('ElectronBrowserView.handleBrowserViewDestroyed')
@@ -17,6 +18,7 @@ export const commandMap = {
   'ElectronBrowserView.handleContextMenu': handleContextMenu,
   'ElectronBrowserView.handleDidNavigate': handleDidNavigate,
   'ElectronBrowserView.handleKeyBinding': handleKeyBinding,
+  'ElectronBrowserView.handleLogin': HandleLogin.handleLogin,
   'ElectronBrowserView.handlePageFaviconUpdated': handlePageFaviconUpdated,
   'ElectronBrowserView.handleTitleUpdated': handleTitleUpdated,
   'ElectronBrowserView.handleWillNavigate': handleWillNavigate,

@@ -20,3 +20,28 @@ test('preserves the context menu payload from the direct main-process connection
 
   expect(invocations).toEqual([['ElectronBrowserView.handleContextMenu', event]])
 })
+
+test('forwards authentication challenges from the direct main-process connection', async () => {
+  const invocations: unknown[][] = []
+  ParentRpc.set(
+    MockRpc.create({
+      commandMap: {},
+      invoke: async (method: string, ...args: readonly unknown[]) => {
+        invocations.push([method, ...args])
+      },
+    }),
+  )
+  const challenge = {
+    host: 'localhost',
+    isProxy: false,
+    port: 80,
+    realm: 'Test',
+    requestId: '12:1',
+    scheme: 'basic',
+    url: 'http://localhost/private',
+  }
+
+  await commandMap['ElectronBrowserView.handleLogin']('12', challenge)
+
+  expect(invocations).toEqual([['ElectronBrowserView.handleLogin', '12', challenge]])
+})
